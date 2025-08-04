@@ -1,4 +1,4 @@
-*Oq tem que fazer:*
+Oq tem que fazer: /n
 colocar a api que pega a sua latitude e logitude e sicronizar com as outras. Sicronizar tudo com o banco de dados.(feito)
 e indentificado um ploblema, ela funciona so que so pega latitude longitude da cidade grande mais proxima exmplo: Centro. Oque broxa nosso app total.
 
@@ -18,7 +18,7 @@ link das APIS:
 IP-Api: https://ip-api.com/ //(link da api de latitude e logitude.) <-- Mudaremos de ideia sobre ela, funciona so que nao do jeito que queremos.
 Forsquare Api: https://pt.foursquare.com/developers (Api principal.)
 
-*Pendentes*
+Pendentes /n
 |
 V
 
