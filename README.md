@@ -27,3 +27,7 @@ Fazer a telas das empresas no aplicativo.
 
 fazer test para debura bugs e erros. 
 E fazer melhorias vizuais.
+
+
+comando para desbloquear os arquivos
+Get-ChildItem -Recurse "url" | Unblock-file
