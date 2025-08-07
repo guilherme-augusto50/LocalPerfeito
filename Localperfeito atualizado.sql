@@ -66,8 +66,10 @@ CREATE TABLE Locais (
     edereco VARCHAR(200),
     preco VARCHAR(20),
     tags VARCHAR(200),
+    contato varchar(200),
     categoria_id INT,
     restaurante_id INT,
+    avaliacao_id int,
     FOREIGN KEY (categoria_id) REFERENCES Categoria(Id_categoria) ON DELETE SET NULL,
     FOREIGN KEY (restaurante_id) REFERENCES Empresas(id_restaurante) ON DELETE SET NULL
 ) CHARSET=utf8mb4
@@ -111,3 +113,15 @@ CREATE TABLE Avaliacao (
     FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE
 ) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE Agendamento (
+    id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_local INT,
+    id_usuario INT,
+    dia DATE,
+    FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE
+) CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+    
