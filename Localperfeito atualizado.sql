@@ -17,22 +17,14 @@ CREATE TABLE usuarios (
 ) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
--- Tabela de Categorias
-CREATE TABLE Categoria (
-    Id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL
-) CHARSET=utf8mb4
-COLLATE=utf8mb4_unicode_ci;
-
 -- Tabela de Preferências dos Usuários
-CREATE TABLE PreferenciaUsuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    categoria_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
-    FOREIGN KEY (categoria_id) REFERENCES Categoria(Id_categoria) ON DELETE CASCADE
-) CHARSET=utf8mb4
-COLLATE=utf8mb4_unicode_ci;
+-- CREATE TABLE PreferenciaUsuario (
+  --  id INT AUTO_INCREMENT PRIMARY KEY,
+--    usuario_id INT,
+ --   categoria_id INT,
+ --   FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
+-- ) CHARSET=utf8mb4
+-- COLLATE=utf8mb4_unicode_ci;
 
 -- Tabela de Planos (ex: Free, Premium)
 CREATE TABLE Planos (
@@ -64,14 +56,10 @@ CREATE TABLE Locais (
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     edereco VARCHAR(200),
+    contato VARCHAR(200),
     preco VARCHAR(20),
     tags VARCHAR(200),
-    contato varchar(200),
-    categoria_id INT,
-    restaurante_id INT,
-    avaliacao_id int,
-    FOREIGN KEY (categoria_id) REFERENCES Categoria(Id_categoria) ON DELETE SET NULL,
-    FOREIGN KEY (restaurante_id) REFERENCES Empresas(id_restaurante) ON DELETE SET NULL
+    categoria VARCHAR(100) -- novo campo textual
 ) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
@@ -104,24 +92,23 @@ COLLATE=utf8mb4_unicode_ci;
 -- Tabela de Avaliaçoes 
 CREATE TABLE Avaliacao (
     id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
+    id_usuarios INT,
     id_local INT,
     estrelas INT CHECK (estrelas >= 1 AND estrelas <= 5),
     comentario TEXT,
     data_avaliacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
+    FOREIGN KEY (id_usuarios) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
     FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE
 ) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE Agendamento (
-    id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
-    id_local INT,
-    id_usuario INT,
-    dia DATE,
-    FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE
-) CHARSET=utf8mb4
-COLLATE=utf8mb4_unicode_ci;
 
-    
+CREATE TABLE LocaisMarcados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_local INT NOT NULL,
+    data_marcado DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
+    FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE
+)CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
