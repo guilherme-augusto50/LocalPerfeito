@@ -59,9 +59,13 @@ CREATE TABLE Locais (
     contato VARCHAR(200),
     preco VARCHAR(20),
     tags VARCHAR(200),
-    categoria VARCHAR(100) -- novo campo textual
+    categoria VARCHAR(100), -- novo campo textual
+    id_usuario int not null,
+    foreign key (id_usuario) references usuarios(id_usuarios)
 ) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
+
+
 
 -- Tabela de Favoritos dos Usuários
 CREATE TABLE Favorito (
@@ -103,12 +107,18 @@ CREATE TABLE Avaliacao (
 COLLATE=utf8mb4_unicode_ci;
 
 
+DROP TABLE IF EXISTS LocaisMarcados;
 CREATE TABLE LocaisMarcados (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    Id_localMarcado INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    endereco VARCHAR(200),
+    contato VARCHAR(200),
+    data_marcada DATE,
+    hora TIME,
+    categoria VARCHAR(100),
     id_usuario INT NOT NULL,
-    id_local INT NOT NULL,
-    data_marcado DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE,
-    FOREIGN KEY (id_local) REFERENCES Locais(Id_local) ON DELETE CASCADE
-)CHARSET=utf8mb4
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuarios) ON DELETE CASCADE
+) CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
+SELECT * FROM LocaisMarcados WHERE id_usuario = 1;
